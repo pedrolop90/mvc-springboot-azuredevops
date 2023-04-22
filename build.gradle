@@ -1,0 +1,57 @@
+plugins {
+    id 'org.springframework.boot' version '3.0.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'application'
+    id 'jacoco'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+mainClassName = "org.example.Main"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.4'
+
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    onlyIf = { true }
+    dependsOn test
+    reports {
+        xml.enabled true
+        html.enabled true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+    classDirectories.from = fileTree(
+            dir: "${project.buildDir}/classes",
+            includes: [
+                    '**/test/**'
+            ]
+    )
+    sourceDirectories.from = files("${project.projectDir}/src/main/java")
+    executionData.from = files("${buildDir}/jacoco/test.exec")
+}

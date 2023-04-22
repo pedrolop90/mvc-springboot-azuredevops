@@ -1,0 +1,43 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  name: Azure Pipelines
+  vmImage: 'ubuntu-latest'
+
+variables:
+  #java
+  jdkVersion: '17'
+  #docker
+  imageName: '<Nombre de la imagen de Docker>'
+  dockerfilePath: '.'
+  tag: '$(Build.BuildNumber)'
+  nombreRegistroContenedor: ''
+  #sonarcloud
+  nombreConexionSonarcloud: ''
+  rutaDirectorioRaizProyecto: ''
+  claveProyectoSonarcloud: ''
+  nombreOrganizacionSonarcloud: ''
+
+stages:
+  - stage: Stage CI/CD
+    displayName: 'CI/CD to development environment'
+
+    jobs:
+      - job: DevelopCI
+        displayName: 'Develop CI'
+        steps:
+          - checkout: self
+          - checkout: templates
+          - template: pipeline/ci.yml@templates
+
+      - job: DevelopCD
+        displayName: 'Develop CD'
+        dependsOn: DevelopCI
+        steps:
+          - checkout: self
+          - checkout: templates
+          - template: pipeline/cd.yml@templates
+
