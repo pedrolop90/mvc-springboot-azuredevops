@@ -28,7 +28,7 @@ variables:
     value: ''
   - name: nombreOrganizacionSonarcloud
     value: ''
-  #  - group: grupo-test-1
+  - group: grupo-test-1
   - name: nombrePersona
     value: $[variables.nombre]
 
