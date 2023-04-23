@@ -30,7 +30,7 @@ variables:
     value: ''
   - group: grupo-test-1
   - name: nombrePersona
-    value: $[build.repository.nombre]
+    value: $[variables.nombre]
 
 
 stages:
