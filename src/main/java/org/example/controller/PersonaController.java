@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PersonaController {
 
+
     @GetMapping
     public SaludarResponse saludar() {
         return SaludarResponse
