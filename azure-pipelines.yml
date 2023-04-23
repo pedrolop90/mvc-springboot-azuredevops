@@ -28,7 +28,7 @@ variables:
     value: ''
   - name: nombreOrganizacionSonarcloud
     value: ''
-  - group: grupo-test-1
+#  - group: grupo-test-1
   - name: nombrePersona
     value: $[variables.nombre]
 
@@ -36,10 +36,14 @@ variables:
 stages:
   - stage: principal
     displayName: 'CI/CD to development environment'
-
+    variable:
+      - group: grupo-test-1
+      - name: environment_stage
+        value: $[variables.environment_stage]
     jobs:
       - job: DevelopCI
         displayName: 'Develop CI'
+        environment: $(environment_stage)
         steps:
         - task: Bash@3
           inputs:
