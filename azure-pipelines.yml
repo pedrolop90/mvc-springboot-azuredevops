@@ -8,18 +8,27 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  #java
-  jdkVersion: '17'
-  #docker
-  imageName: '<Nombre de la imagen de Docker>'
-  dockerfilePath: '.'
-  tag: '$(Build.BuildNumber)'
-  nombreRegistroContenedor: ''
-  #sonarcloud
-  nombreConexionSonarcloud: ''
-  rutaDirectorioRaizProyecto: ''
-  claveProyectoSonarcloud: ''
-  nombreOrganizacionSonarcloud: ''
+  - name: jdkVersion
+    value: '17'
+  - group: grupoVariablesDocker
+  - name: imageName
+    value: '<Nombre de la imagen de Docker>'
+  - name: dockerfilePath
+    value: '.'
+  - name: tag
+    value: '$(Build.BuildNumber)'
+  - name: nombreRegistroContenedor
+    value: ''
+  - group: grupoVariablesSonarcloud
+  - name: nombreConexionSonarcloud
+    value: ''
+  - name: rutaDirectorioRaizProyecto
+    value: ''
+  - name: claveProyectoSonarcloud
+    value: ''
+  - name: nombreOrganizacionSonarcloud
+    value: ''
+
 
 stages:
   - stage: Stage CI/CD
@@ -27,17 +36,17 @@ stages:
 
     jobs:
       - job: DevelopCI
-        displayName: 'Develop CI'
-        steps:
-          - checkout: self
-          - checkout: templates
-          - template: pipeline/ci.yml@templates
-
-      - job: DevelopCD
-        displayName: 'Develop CD'
-        dependsOn: DevelopCI
-        steps:
-          - checkout: self
-          - checkout: templates
-          - template: pipeline/cd.yml@templates
-
+        displayName: 'Develop CI`${tag}'
+#        steps:
+#          - checkout: self
+#          - checkout: templates
+#          - template: pipeline/ci.yml@templates
+#
+#      - job: DevelopCD
+#        displayName: 'Develop CD'
+#        dependsOn: DevelopCI
+#        steps:
+#          - checkout: self
+#          - checkout: templates
+#          - template: pipeline/cd.yml@templates
+#
