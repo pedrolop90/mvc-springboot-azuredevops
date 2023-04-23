@@ -38,11 +38,11 @@ stages:
     displayName: 'CI/CD to development environment'
     variables:
       - group: grupo-test-1
-      - name: environment_local
-        value: $[variables.environment_stage]
+#      - name: environment_local
+#        value: $[variables.environment_stage]
     jobs:
       - deployment: 'debug_01'
-        environment: ${{ variables.environment_local }}
+        environment: 'develop'
       - job: DevelopCI
         displayName: 'Develop CI'
         steps:
