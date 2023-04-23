@@ -10,7 +10,7 @@ pool:
 variables:
   - name: jdkVersion
     value: '17'
-#  - group: grupoVariablesDocker
+  #  - group: grupoVariablesDocker
   - name: imageName
     value: '<Nombre de la imagen de Docker>'
   - name: dockerfilePath
@@ -19,7 +19,7 @@ variables:
     value: '$(Build.BuildNumber)'
   - name: nombreRegistroContenedor
     value: ''
-#  - group: grupoVariablesSonarcloud
+  #  - group: grupoVariablesSonarcloud
   - name: nombreConexionSonarcloud
     value: ''
   - name: rutaDirectorioRaizProyecto
@@ -28,26 +28,28 @@ variables:
     value: ''
   - name: nombreOrganizacionSonarcloud
     value: ''
-  - group: grupo-test-1
+  #  - group: grupo-test-1
   - name: nombrePersona
     value: $[variables.nombre]
-  - name: environment_stage
-    value: $[variables.ambiente]
+
 
 stages:
   - stage: principal
     displayName: 'CI/CD to development environment'
-#    variables:
+    variables:
+      - group: grupo-test-1
+      - name: environment_stage
+        value: $[variables.ambiente]
     jobs:
       - deployment: 'debug_01'
         environment: $(environment_stage)
       - job: DevelopCI
         displayName: 'Develop CI'
         steps:
-        - task: Bash@3
-          inputs:
-            targetType: 'inline'
-            script: echo '$(nombrePersona)'
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: echo '$(nombrePersona)'
 #        steps:
 #          - checkout: self
 #          - checkout: templates
