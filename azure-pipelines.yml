@@ -34,7 +34,7 @@ variables:
 
 
 stages:
-  - stage: Stage CI/CD
+  - stage: 'Stage CI/CD'
     displayName: 'CI/CD to development environment'
 
     jobs:
