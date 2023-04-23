@@ -36,7 +36,7 @@ variables:
 stages:
   - stage: principal
     displayName: 'CI/CD to development environment'
-    variable:
+    variables:
       - group: grupo-test-1
       - name: environment_stage
         value: $[variables.environment_stage]
