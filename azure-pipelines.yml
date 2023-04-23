@@ -19,7 +19,7 @@ variables:
     value: '$(Build.BuildNumber)'
   - name: nombreRegistroContenedor
     value: ''
-  - group: grupoVariablesSonarcloud
+#  - group: grupoVariablesSonarcloud
   - name: nombreConexionSonarcloud
     value: ''
   - name: rutaDirectorioRaizProyecto
