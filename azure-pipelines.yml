@@ -32,7 +32,7 @@ variables:
   - name: nombrePersona
     value: $[variables.nombre]
   - name: environment_stage
-    value: $[variables.nombre]
+    value: $[variables.ambiente]
 
 stages:
   - stage: principal
