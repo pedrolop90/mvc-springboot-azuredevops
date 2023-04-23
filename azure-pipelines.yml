@@ -40,7 +40,7 @@ stages:
 #    variables:
     jobs:
       - deployment: 'debug_01'
-        environment: ${{ variables.environment_stage }}
+        environment: $(environment_stage)
       - job: DevelopCI
         displayName: 'Develop CI'
         steps:
