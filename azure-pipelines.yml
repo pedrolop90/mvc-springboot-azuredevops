@@ -39,7 +39,7 @@ stages:
     variables:
       - group: grupo-test-1
       - name: environment_stage
-        value: $[variables.environment_stage]
+        value: 'main'
     jobs:
       - deployment: 'debug_01'
         environment: ${{ variables.environment_stage }}
