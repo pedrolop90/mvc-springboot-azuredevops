@@ -41,9 +41,10 @@ stages:
       - name: environment_stage
         value: $[variables.environment_stage]
     jobs:
+      - deployment: 'debug-01'
+        environment: $(environment_stage)
       - job: DevelopCI
         displayName: 'Develop CI'
-        environment: $(environment_stage)
         steps:
         - task: Bash@3
           inputs:
