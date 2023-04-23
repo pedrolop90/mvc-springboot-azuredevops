@@ -39,7 +39,12 @@ stages:
 
     jobs:
       - job: DevelopCI
-        displayName: 'Develop CI`${tag} - ${nombrePersona}'
+        displayName: 'Develop CI'
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: echo '$(nombrePersona)'
 #        steps:
 #          - checkout: self
 #          - checkout: templates
