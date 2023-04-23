@@ -28,7 +28,7 @@ variables:
     value: ''
   - name: nombreOrganizacionSonarcloud
     value: ''
-#  - group: grupo-test-1
+  - group: grupo-test-1
   - name: nombrePersona
     value: $[variables.nombre]
   - name: environment_stage
@@ -37,8 +37,7 @@ variables:
 stages:
   - stage: principal
     displayName: 'CI/CD to development environment'
-    variables:
-      - group: grupo-test-1
+#    variables:
     jobs:
       - deployment: 'debug_01'
         environment: ${{ variables.environment_stage }}
